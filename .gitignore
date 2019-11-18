@@ -107,3 +107,7 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
+将删除 src/main/java/blog/controller/
+将删除 src/main/java/blog/service/
+将删除 src/main/webapp/static/
+将删除 src/main/webapp/web/
