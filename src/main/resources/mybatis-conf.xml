@@ -5,6 +5,7 @@
 <configuration>
     <!-- 别名 -->
     <typeAliases>
-        <package name="blog.entity"/>
+        <package name="com.blog.entity"/>
     </typeAliases>
+
 </configuration>
