@@ -37,22 +37,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/del", method = RequestMethod.POST)
-    public String deleteUser(String username) {
+    public void deleteUser(String username) {
         User user = userService.findUserByUsername(username);
         userService.deleteUser(user.getId());
-        return "hello";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateUser(User user) {
+    public void updateUser(User user) {
         userService.updateUser(user);
-        return "hello";
-
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveUser(User user) {
+    public void saveUser(User user) {
         userService.saveUser(user);
-        return "hello";
     }
 }
