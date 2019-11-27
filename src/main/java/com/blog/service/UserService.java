@@ -28,7 +28,7 @@ public interface UserService {
     /**
      * 删除用户
      */
-    void deleteUser(User user);
+    void deleteUser(int id);
 
     /**
      * 注册新用户

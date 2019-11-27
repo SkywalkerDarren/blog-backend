@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByUsername(String name) {
-        return null;
+        return userDao.findUserByUsername(name);
     }
 
     @Override
@@ -26,22 +26,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAllUser() {
-        System.out.println("findAllUser");
         return userDao.findAllUser();
     }
 
     @Override
     public void updateUser(User user) {
-
+        userDao.updateUser(user);
     }
 
     @Override
-    public void deleteUser(User user) {
-
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
     }
 
     @Override
     public void saveUser(User user) {
-
+        userDao.saveUser(user);
     }
 }

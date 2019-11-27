@@ -23,7 +23,6 @@ public interface UserDao {
     /**
      * 查找所有用户
      */
-    //@Select("select * from user")
     List<User> findAllUser();
 
     /**
@@ -34,7 +33,7 @@ public interface UserDao {
     /**
      * 删除用户
      */
-    void deleteUser(User user);
+    void deleteUser(int userId);
 
     /**
      * 注册新用户

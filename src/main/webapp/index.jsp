@@ -11,6 +11,22 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/user/all">hello</a>
+<form action="user/save" method="post">
+    username:<input type="text" name="username"/><br/>
+    password:<input type="password" name="password"/><br/>
+    grant:<input type="text" name="grant"/><br/>
+    <input type="submit" value="submit"/>
+</form>
+<form action="user/del" method="post">
+    username:<input type="text" name="username"/><br/>
+    <input type="submit" value="submit"/>
+</form>
+<form action="user/update" method="post">
+    id:<input type="text" name="id"/><br/>
+    username:<input type="text" name="username"/><br/>
+    password:<input type="password" name="password"/><br/>
+    grant:<input type="text" name="grant"/><br/>
+    <input type="submit" value="submit"/>
+</form>
 </body>
 </html>

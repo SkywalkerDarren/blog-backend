@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -18,14 +19,40 @@ public class UserController {
     private UserService userService;
 
     @ResponseBody  //返回json数据
-    @RequestMapping(value="/{id}}")
-    public User findUserById(@PathVariable Integer id){
-        return userService.findUserById(id);
+    @RequestMapping("/id/{id}")
+    public User findUserById(@PathVariable String id){
+        return userService.findUserById(Integer.parseInt(id));
     }
 
     @ResponseBody
     @RequestMapping("/all")
     public List<User> findAllUser() {
         return userService.findAllUser();
+    }
+
+    @ResponseBody
+    @RequestMapping("/{username}")
+    public User findUserByUsername(@PathVariable String username) {
+        return userService.findUserByUsername(username);
+    }
+
+    @RequestMapping(value = "/del", method = RequestMethod.POST)
+    public String deleteUser(String username) {
+        User user = userService.findUserByUsername(username);
+        userService.deleteUser(user.getId());
+        return "hello";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateUser(User user) {
+        userService.updateUser(user);
+        return "hello";
+
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveUser(User user) {
+        userService.saveUser(user);
+        return "hello";
     }
 }
