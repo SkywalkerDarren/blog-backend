@@ -23,15 +23,15 @@
         <include refid="findAllColumn"/>
     </select>
 
-    <select id="findUserById" parameterType="int" resultMap="user">
+    <select id="findUserById" resultMap="user">
         <include refid="findAllColumn"/> where id=#{id}
     </select>
 
-    <select id="findUserByUsername" parameterType="String" resultMap="user">
+    <select id="findUserByUsername" resultMap="user">
         <include refid="findAllColumn"/> where username=#{username}
     </select>
 
-    <delete id="deleteUser" parameterType="int">
+    <delete id="deleteUser">
         delete from user where id=#{id}
     </delete>
 

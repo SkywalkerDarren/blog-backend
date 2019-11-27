@@ -1,6 +1,7 @@
 package com.blog.dao;
 
 import com.blog.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,12 +15,12 @@ public interface UserDao {
     /**
      * 根据用户名查找用户
      */
-    User findUserByUsername(String name);
+    User findUserByUsername(@Param("name") String name);
 
     /**
      * 根据用户id查找用户
      */
-    User findUserById(int id);
+    User findUserById(@Param("id") int id);
 
     /**
      * 查找所有用户
@@ -29,15 +30,15 @@ public interface UserDao {
     /**
      * 修改用户
      */
-    void updateUser(User user);
+    void updateUser(@Param("user") User user);
 
     /**
      * 删除用户
      */
-    void deleteUser(int userId);
+    void deleteUser(@Param("userId") int userId);
 
     /**
      * 注册新用户
      */
-    void saveUser(User user);
+    void saveUser(@Param("user") User user);
 }

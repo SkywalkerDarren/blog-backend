@@ -1,9 +1,10 @@
 package com.blog.dao;
 
 import com.blog.entity.Comment;
-import org.joda.time.DateTime;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,42 +17,42 @@ public interface CommentDao {
     /**
      * 根据评论id查找评论
      */
-    Comment findCommentById(int id);
+    Comment findCommentById(@Param("id") int id);
 
     /**
      * 模糊查找评论
      */
-    List<Comment> findComment(String comment);
+    List<Comment> findComment(@Param("comment") String comment);
 
     /**
      * 根据用户id查找其所有评论
      */
-    List<Comment> findCommentByUserId(int id);
+    List<Comment> findCommentByUserId(@Param("id") int id);
 
     /**
      * 根据用户id查找时间段内所有评论
      */
-    List<Comment> findCommentByDatetimeRangeAndUserId(DateTime start, DateTime end, int id);
+    List<Comment> findCommentByDatetimeRangeAndUserId(@Param("start") Date start, @Param("end") Date end, @Param("userId") int id);
 
     /**
      * 根据文章id查找文章下所有评论
      */
-    List<Comment> findCommentByArticleId(int id);
+    List<Comment> findCommentByArticleId(@Param("id") int id);
 
     /**
      * 根据文章id查找文章下时间段内所有评论
      */
-    List<Comment> findCommentByDatetimeRangeAndArticleId(DateTime start, DateTime end, int id);
+    List<Comment> findCommentByDatetimeRangeAndArticleId(@Param("start") Date start, @Param("end") Date end, @Param("articleId") int id);
 
     /**
      * 根据用户id,文章id查找其所有评论
      */
-    List<Comment> findCommentByUserIdAndArticleId(int userId, int articleId);
+    List<Comment> findCommentByUserIdAndArticleId(@Param("userId") int userId, @Param("articleId") int articleId);
 
     /**
      * 根据用户id,文章id查找时间段内所有评论
      */
-    List<Comment> findCommentByDatetimeRangeAndUserIdAndArticleId(DateTime start, DateTime end, int userId, int articleId);
+    List<Comment> findCommentByDatetimeRangeAndUserIdAndArticleId(@Param("start") Date start, @Param("end") Date end, @Param("userId") int userId, @Param("articleId") int articleId);
 
     /**
      * 查找所有评论
@@ -61,20 +62,20 @@ public interface CommentDao {
     /**
      * 查找时间段内所有评论
      */
-    List<Comment> findCommentByDatetimeRange(DateTime start, DateTime end);
+    List<Comment> findCommentByDatetimeRange(@Param("start") Date start, @Param("end") Date end);
 
     /**
      * 修改评论
      */
-    void updateComment(Comment comment);
+    void editComment(@Param("comment") Comment comment);
 
     /**
      * 删除评论
      */
-    void deleteComment(int id);
+    void deleteComment(@Param("id") int id);
 
     /**
      * 新评论
      */
-    void saveComment(Comment comment);
+    void saveComment(@Param("comment") Comment comment);
 }

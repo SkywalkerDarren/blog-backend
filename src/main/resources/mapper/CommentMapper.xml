@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.CommentDao">
+    <!--
+        返回结果映射
+        如果开启驼峰命名转换且命名规范该段代码可以不写
+        因为配置别名 所以type属性使用的是mybatis-conf中的别名
+        -->
+    <resultMap type="Comment" id="comment">
+        <id property="id" column="id"/>
+        <result property="userId" column="userId"/>
+        <result property="articleId" column="articleId"/>
+        <result property="content" column="content"/>
+        <result property="datetime" column="datetime"/>
+    </resultMap>
+    <!--  定义字段集合 -->
+    <sql id="findAllColumn">
+        select * from comment
+    </sql>
+    <!-- 接口中具体实现-->
+    <select id="findAllComment" resultMap="comment">
+        <include refid="findAllColumn"/>
+    </select>
+
+    <select id="findCommentById" resultMap="comment">
+        <include refid="findAllColumn"/> where id=#{id}
+    </select>
+
+    <select id="findComment" resultMap="comment">
+        <include refid="findAllColumn"/> where content like #{keyword}
+    </select>
+
+    <select id="findCommentByUserId" resultMap="comment">
+        <include refid="findAllColumn"/> where userId=#{userId}
+    </select>
+
+    <select id="findCommentByArticleId" resultMap="comment">
+        <include refid="findAllColumn"/> where articleId=#{articleId}
+    </select>
+
+    <select id="findCommentByUserIdAndArticleId" resultMap="comment">
+        <include refid="findAllColumn"/> where userId=#{userId} and articleId=#{articleId}
+    </select>
+
+    <select id="findCommentByDatetimeRangeAndUserId" resultType="comment">
+        <include refid="findAllColumn"/> where userId=#{userId} and datetime>=#{start} and datetime&lt;=#{end}
+    </select>
+    <select id="findCommentByDatetimeRangeAndArticleId" resultType="comment">
+        <include refid="findAllColumn"/> where articleId=#{articleId} and datetime>=#{start} and datetime&lt;=#{end}
+    </select>
+    <select id="findCommentByDatetimeRangeAndUserIdAndArticleId" resultType="comment">
+        <include refid="findAllColumn"/> where articleId=#{articleId} and userId=#{userId} and datetime>=#{start} and datetime&lt;=#{end}
+    </select>
+    <select id="findCommentByDatetimeRange" resultType="comment">
+        <include refid="findAllColumn"/> where datetime>=#{start} and datetime&lt;=#{end}
+    </select>
+
+
+    <delete id="deleteComment">
+        delete from comment where id=#{id}
+    </delete>
+
+    <update id="editComment" parameterType="Comment">
+        update comment set userId=#{userId},articleId=#{articleId},datetime=#{datetime},content=#{content} where id=#{id}
+    </update>
+
+    <insert id="saveComment" parameterType="Comment">
+        insert into comment (userId, articleId, datetime, content) VALUES (#{userId},#{articleId},#{datetime},#{content})
+    </insert>
+</mapper>

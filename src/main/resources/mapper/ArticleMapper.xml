@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.ArticleDao">
+    <!--
+        返回结果映射
+        如果开启驼峰命名转换且命名规范该段代码可以不写
+        因为配置别名 所以type属性使用的是mybatis-conf中的别名
+        -->
+    <resultMap type="Article" id="article">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="userId" column="userId"/>
+        <result property="datetime" column="datetime"/>
+    </resultMap>
+    <!--  定义字段集合 -->
+    <sql id="findAllColumn">
+        select * from article
+    </sql>
+    <!-- 接口中具体实现-->
+
+</mapper>
