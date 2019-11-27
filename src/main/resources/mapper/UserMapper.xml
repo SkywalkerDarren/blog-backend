@@ -15,9 +15,15 @@
         <result property="grant" column="grant"/>
     </resultMap>
     <!--  定义字段集合 -->
-
+    <sql id="findAllColumn">
+        select * from user
+    </sql>
     <!-- 接口中具体实现-->
     <select id="findAllUser" resultMap="user">
-        select * from user
+        <include refid="findAllColumn"/>
+    </select>
+
+    <select id="findUserById" parameterType="int" resultMap="user">
+        <include refid="findAllColumn"/> where id=#{id}
     </select>
 </mapper>

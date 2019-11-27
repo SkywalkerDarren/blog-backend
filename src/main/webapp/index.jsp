@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/blog/hello">hello</a>
+<a href="/user/all">hello</a>
 </body>
 </html>
