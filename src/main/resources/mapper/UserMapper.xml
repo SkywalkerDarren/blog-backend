@@ -8,38 +8,66 @@
         如果开启驼峰命名转换且命名规范该段代码可以不写
         因为配置别名 所以type属性使用的是mybatis-conf中的别名
         -->
-    <resultMap type="User" id="user">
+    <resultMap type="User" id="userMap">
         <id property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="grant" column="grant"/>
     </resultMap>
     <!--  定义字段集合 -->
-    <sql id="findAllColumn">
-        select * from user
+    <sql id="findAllUserColumn">
+        select *
+        from user
     </sql>
     <!-- 接口中具体实现-->
-    <select id="findAllUser" resultMap="user">
-        <include refid="findAllColumn"/>
+    <select id="findAllUser" resultMap="userMap">
+        <include refid="findAllUserColumn"/>
     </select>
 
-    <select id="findUserById" resultMap="user">
-        <include refid="findAllColumn"/> where id=#{id}
+    <select id="findUserById" resultMap="userMap">
+        <include refid="findAllUserColumn"/>
+        where id=#{id}
     </select>
 
-    <select id="findUserByUsername" resultMap="user">
-        <include refid="findAllColumn"/> where username=#{username}
+    <select id="findUserByUsername" resultMap="userMap">
+        <include refid="findAllUserColumn"/>
+        where username=#{username}
+    </select>
+
+    <select id="findByCustom" parameterType="User" resultMap="userMap">
+        <include refid="findAllUserColumn"/>
+        <where>
+            <if test="id != null">
+                id=#{id}
+            </if>
+            <if test="grant != null">
+                and `grant`=#{grant}
+            </if>
+            <if test="username != null">
+                and username=#{username}
+            </if>
+            <if test="password != null">
+                and password=#{password}
+            </if>
+        </where>
     </select>
 
     <delete id="deleteUser">
-        delete from user where id=#{id}
+        delete user
+        from user
+        where id = #{id}
     </delete>
 
     <update id="updateUser" parameterType="User">
-        update user set username=#{username},password=#{password},`grant`=#{grant} where id=#{id}
+        update user
+        set username=#{username},
+            password=#{password},
+            `grant`=#{grant}
+        where id = #{id}
     </update>
 
     <insert id="saveUser" parameterType="User">
-        insert into user (username, password, `grant`) VALUES (#{username},#{password},#{grant})
+        insert into user (username, password, `grant`)
+        VALUES (#{username}, #{password}, #{grant})
     </insert>
 </mapper>

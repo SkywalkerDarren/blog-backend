@@ -41,7 +41,7 @@ public class UserDaoTest {
 
     @Test
     public void deleteUser() {
-        userDao.deleteUser(8);
+        userDao.deleteUser(99);
     }
 
     @Test
@@ -52,4 +52,14 @@ public class UserDaoTest {
         user.setPassword("qwer");
         userDao.saveUser(user);
     }
+
+    @Test
+    public void findByCustom() {
+        User user = new User();
+        //user.setUsername("newUser");
+        user.setGrant("visitor");
+        //user.setPassword("qwer");
+        System.out.println(userDao.findByCustom(user));
+    }
+
 }

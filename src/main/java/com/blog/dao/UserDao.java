@@ -12,6 +12,9 @@ import java.util.List;
  */
 @Repository
 public interface UserDao {
+
+    List<User> findByCustom(User user);
+
     /**
      * 根据用户名查找用户
      */
