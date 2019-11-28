@@ -19,30 +19,29 @@ public class UserController {
     private UserService userService;
 
     @ResponseBody  //返回json数据
-    @RequestMapping("/id/{id}")
-    public User findUserById(@PathVariable String id){
+    @RequestMapping(value = "/id/#{id}", method = RequestMethod.GET)
+    public User findUserById(@PathVariable("id") String id){
         return userService.findUserById(Integer.parseInt(id));
     }
 
     @ResponseBody
-    @RequestMapping("/all")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> findAllUser() {
         return userService.findAllUser();
     }
 
     @ResponseBody
-    @RequestMapping("/{username}")
-    public User findUserByUsername(@PathVariable String username) {
+    @RequestMapping(value = "/name/#{username}", method = RequestMethod.GET)
+    public User findUserByUsername(@PathVariable("username") String username) {
         return userService.findUserByUsername(username);
     }
 
-    @RequestMapping(value = "/del", method = RequestMethod.POST)
-    public void deleteUser(String username) {
-        User user = userService.findUserByUsername(username);
-        userService.deleteUser(user.getId());
+    @RequestMapping(value = "/del/#{id}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable("id") Integer id) {
+        userService.deleteUser(id);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void updateUser(User user) {
         userService.updateUser(user);
     }
