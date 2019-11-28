@@ -84,6 +84,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void saveComment(Comment comment) {
+        if (comment.getDatetime() == null){
+            comment.setDatetime(new Date());
+        }
         commentDao.saveComment(comment);
     }
 }

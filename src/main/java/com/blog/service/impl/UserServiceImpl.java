@@ -41,6 +41,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
+        if (user.getGrant() == null) {
+            user.setGrant("visitor");
+        }
         userDao.saveUser(user);
     }
 }

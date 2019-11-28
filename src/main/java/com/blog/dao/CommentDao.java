@@ -22,7 +22,7 @@ public interface CommentDao {
     /**
      * 模糊查找评论
      */
-    List<Comment> findComment(@Param("comment") String comment);
+    List<Comment> findComment(@Param("keyword") String comment);
 
     /**
      * 根据用户id查找其所有评论

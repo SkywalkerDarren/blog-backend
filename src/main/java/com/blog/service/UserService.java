@@ -8,7 +8,7 @@ public interface UserService {
     /**
      * 根据用户名查找用户
      */
-    User findUserByUsername(String name);
+    User findUserByUsername(String username);
 
     /**
      * 根据用户id查找用户

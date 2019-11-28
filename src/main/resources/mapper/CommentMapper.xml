@@ -33,11 +33,11 @@
     </select>
 
     <select id="findCommentByUserId" resultMap="comment">
-        <include refid="findAllColumn"/> where userId=#{userId}
+        <include refid="findAllColumn"/> where userId=#{id}
     </select>
 
     <select id="findCommentByArticleId" resultMap="comment">
-        <include refid="findAllColumn"/> where articleId=#{articleId}
+        <include refid="findAllColumn"/> where articleId=#{id}
     </select>
 
     <select id="findCommentByUserIdAndArticleId" resultMap="comment">

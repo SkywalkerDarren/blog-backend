@@ -50,6 +50,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void saveArticle(Article article) {
+        if (article.getDatetime() == null) {
+            article.setDatetime(new Date());
+        }
         articleDao.saveArticle(article);
     }
 }

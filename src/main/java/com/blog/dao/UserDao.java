@@ -18,7 +18,7 @@ public interface UserDao {
     /**
      * 根据用户名查找用户
      */
-    User findUserByUsername(@Param("name") String name);
+    User findUserByUsername(@Param("username") String username);
 
     /**
      * 根据用户id查找用户
