@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(int id) {
+    public User findUserById(Integer id) {
         return userDao.findUserById(id);
     }
 
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(Integer id) {
         userDao.deleteUser(id);
     }
 

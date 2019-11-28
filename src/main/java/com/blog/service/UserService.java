@@ -13,7 +13,7 @@ public interface UserService {
     /**
      * 根据用户id查找用户
      */
-    User findUserById(int id);
+    User findUserById(Integer id);
 
     /**
      * 查找所有用户
@@ -28,7 +28,7 @@ public interface UserService {
     /**
      * 删除用户
      */
-    void deleteUser(int id);
+    void deleteUser(Integer id);
 
     /**
      * 注册新用户
