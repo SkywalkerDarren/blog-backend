@@ -23,7 +23,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> findArticleByTitle(String title) {
-        return articleDao.findArticleByTitle(title);
+        String like = "%" + title + "%";
+        return articleDao.findArticleByTitle(like);
     }
 
     @Override
