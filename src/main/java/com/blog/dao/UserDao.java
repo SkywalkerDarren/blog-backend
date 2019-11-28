@@ -30,15 +30,15 @@ public interface UserDao {
     /**
      * 修改用户
      */
-    void updateUser(@Param("user") User user);
+    void updateUser(User user);
 
     /**
      * 删除用户
      */
-    void deleteUser(@Param("userId") int userId);
+    void deleteUser(int userId);
 
     /**
      * 注册新用户
      */
-    void saveUser(@Param("user") User user);
+    void saveUser(User user);
 }

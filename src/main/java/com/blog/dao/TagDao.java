@@ -30,15 +30,15 @@ public interface TagDao {
     /**
      * 修改标签
      */
-    void editTag(@Param("tag") Tag tag);
+    void editTag(Tag tag);
 
     /**
      * 删除标签
      */
-    void deleteTag(@Param("id") int id);
+    void deleteTag(int id);
 
     /**
      * 新标签
      */
-    void newTag(@Param("tag") Tag tag);
+    void newTag(Tag tag);
 }

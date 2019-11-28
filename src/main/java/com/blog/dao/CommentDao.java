@@ -67,15 +67,15 @@ public interface CommentDao {
     /**
      * 修改评论
      */
-    void editComment(@Param("comment") Comment comment);
+    void editComment(Comment comment);
 
     /**
      * 删除评论
      */
-    void deleteComment(@Param("id") int id);
+    void deleteComment(int id);
 
     /**
      * 新评论
      */
-    void saveComment(@Param("comment") Comment comment);
+    void saveComment(Comment comment);
 }

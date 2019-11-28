@@ -19,5 +19,26 @@
         select * from article
     </sql>
     <!-- 接口中具体实现-->
+    <insert id="saveArticle" parameterType="Article">
+        insert into article (title, datetime, userId) VALUES (#{title},#{datetime},#{userId})
+    </insert>
+    <update id="updateArticle" parameterType="Article">
+        update article set userId=#{userId},title=#{title},datetime=#{datetime} where id=#{id}
+    </update>
+    <delete id="deleteArticle">
+        delete from article where id=#{id}
+    </delete>
+    <select id="findArticleById" resultMap="article">
+        <include refid="findAllColumn"/> where id=#{id}
+    </select>
+    <select id="findArticleByTitle" resultMap="article">
+        <include refid="findAllColumn"/> where title like #{title}
+    </select>
+    <select id="findArticleByDatetimeRange" resultMap="article">
+        <include refid="findAllColumn"/> where datetime>=#{start} and datetime&lt;=#{end}
+    </select>
+    <select id="findAllArticle" resultMap="article">
+        <include refid="findAllColumn"/>
+    </select>
 
 </mapper>
