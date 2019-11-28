@@ -6,6 +6,6 @@ import java.io.Serializable;
 
 @Data
 public class Tag implements Serializable {
-    private int id;
+    private Integer id;
     private String name;
 }

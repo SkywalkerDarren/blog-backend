@@ -7,8 +7,8 @@ import java.util.Date;
 
 @Data
 public class Article implements Serializable {
-    private int id;
+    private Integer id;
     private String title;
     private Date datetime;
-    private int userId;
+    private Integer userId;
 }

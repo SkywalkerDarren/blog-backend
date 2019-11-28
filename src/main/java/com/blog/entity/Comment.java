@@ -7,9 +7,9 @@ import java.util.Date;
 
 @Data
 public class Comment implements Serializable {
-    private int id;
-    private int userId;
-    private int articleId;
+    private Integer id;
+    private Integer userId;
+    private Integer articleId;
     private Date datetime;
     private String content;
 }
