@@ -23,7 +23,7 @@ public interface UserDao {
     /**
      * 根据用户id查找用户
      */
-    User findUserById(@Param("id") int id);
+    User findUserById(@Param("id") Integer id);
 
     /**
      * 查找所有用户
@@ -38,7 +38,7 @@ public interface UserDao {
     /**
      * 删除用户
      */
-    void deleteUser(int userId);
+    void deleteUser(Integer userId);
 
     /**
      * 注册新用户

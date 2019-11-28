@@ -16,7 +16,7 @@ public interface ArticleDao {
     /**
      * 根据文章id查找文章
      */
-    Article findArticleById(@Param("id") int id);
+    Article findArticleById(@Param("id") Integer id);
 
     /**
      * 根据标题模糊查找文章
@@ -41,7 +41,7 @@ public interface ArticleDao {
     /**
      * 删除文章
      */
-    void deleteArticle(int id);
+    void deleteArticle(Integer id);
 
     /**
      * 新文章

@@ -20,7 +20,7 @@ public interface TagDao {
     /**
      * 根据标签id查找标签
      */
-    Tag findTagById(@Param("id") int id);
+    Tag findTagById(@Param("id") Integer id);
 
     /**
      * 查找所有标签
@@ -35,7 +35,7 @@ public interface TagDao {
     /**
      * 删除标签
      */
-    void deleteTag(int id);
+    void deleteTag(Integer id);
 
     /**
      * 新标签
