@@ -4,10 +4,7 @@ import com.blog.entity.User;
 import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @ResponseBody  //返回json数据
-    @RequestMapping(value = "/id/#{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public User findUserById(@PathVariable("id") String id){
         return userService.findUserById(Integer.parseInt(id));
     }
@@ -31,23 +28,26 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/name/#{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/name/{username}", method = RequestMethod.GET)
     public User findUserByUsername(@PathVariable("username") String username) {
         return userService.findUserByUsername(username);
     }
 
-    @RequestMapping(value = "/del/#{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable("id") Integer id) {
         userService.deleteUser(id);
     }
 
+    @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public void updateUser(User user) {
+    public void updateUser(@RequestBody User user) {
         userService.updateUser(user);
     }
 
+    @ResponseBody
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public void saveUser(User user) {
+    public void saveUser(@RequestBody User user) {
         userService.saveUser(user);
     }
 }

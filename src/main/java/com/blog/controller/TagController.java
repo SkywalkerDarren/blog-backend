@@ -4,10 +4,7 @@ import com.blog.entity.Tag;
 import com.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,13 +16,13 @@ public class TagController {
     private TagService tagService;
 
     @ResponseBody
-    @RequestMapping(value = "/name/#{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
     public Tag findTag(@PathVariable("name") String name){
         return tagService.findTag(name);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/id/#{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public Tag findTagById(@PathVariable("id") Integer id){
         return tagService.findTagById(id);
     }
@@ -36,18 +33,21 @@ public class TagController {
         return tagService.findAllTag();
     }
 
+    @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)
-    public void editTag(Tag tag){
+    public void editTag(@RequestBody Tag tag){
         tagService.editTag(tag);
     }
 
-    @RequestMapping(value = "/del/#{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
     public void deleteTag(@PathVariable("id") Integer id) {
         tagService.deleteTag(id);
     }
 
+    @ResponseBody
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public void newTag(Tag tag) {
+    public void newTag(@RequestBody Tag tag) {
         tagService.newTag(tag);
     }
 }

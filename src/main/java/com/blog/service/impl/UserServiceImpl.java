@@ -31,6 +31,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
+        User oldUser;
+        if (user.getId() != null) {
+            oldUser = userDao.findUserById(user.getId());
+            if (oldUser == null) {
+                throw new RuntimeException("无id");
+            }
+            if (user.getUsername() == null) {
+                user.setUsername(oldUser.getUsername());
+            }
+        } else if (user.getUsername() != null){
+            oldUser = userDao.findUserByUsername(user.getUsername());
+            if (oldUser == null) {
+                throw new RuntimeException("无用户名");
+            }
+            user.setId(oldUser.getId());
+        } else {
+            throw new RuntimeException("无id 用户名");
+        }
+        if (user.getGrant() == null) {
+            user.setGrant(oldUser.getGrant());
+        }
+        if (user.getPassword() == null) {
+            user.setPassword(oldUser.getPassword());
+        }
         userDao.updateUser(user);
     }
 
