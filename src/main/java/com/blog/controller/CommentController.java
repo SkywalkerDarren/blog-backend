@@ -17,58 +17,59 @@ public class CommentController {
     private CommentService commentService;
 
     @ResponseBody
-    @RequestMapping(value = "/id/#{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public Comment findCommentById(@PathVariable("id") Integer id) {
         return commentService.findCommentById(id);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/content/#{content}", method = RequestMethod.GET)
+    @RequestMapping(value = "/content/{content}", method = RequestMethod.GET)
     public List<Comment> findComment(@PathVariable("content") String content) {
         return commentService.findComment(content);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/user/#{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public List<Comment> findCommentByUserId(@PathVariable("id") Integer id) {
         return commentService.findCommentByUserId(id);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/date/user", method = RequestMethod.GET)
-    public List<Comment> findCommentByDatetimeRangeAndUserId(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date start,
-                                                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date end,
-                                                             Integer id) {
+    @RequestMapping(value = "/user/{id}/date/{start}_{end}", method = RequestMethod.GET)
+    public List<Comment> findCommentByDatetimeRangeAndUserId(@PathVariable("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start,
+                                                             @PathVariable("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end,
+                                                             @PathVariable("id") Integer id) {
         return commentService.findCommentByDatetimeRangeAndUserId(start, end, id);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/article/#{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public List<Comment> findCommentByArticleId(@PathVariable("id") Integer id) {
         return commentService.findCommentByArticleId(id);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/date/article", method = RequestMethod.GET)
-    public List<Comment> findCommentByDatetimeRangeAndArticleId(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date start,
-                                                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date end,
-                                                                Integer id) {
+    @RequestMapping(value = "/article/{id}/date/{start}_{end}", method = RequestMethod.GET)
+    public List<Comment> findCommentByDatetimeRangeAndArticleId(@PathVariable("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start,
+                                                                @PathVariable("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end,
+                                                                @PathVariable("id") Integer id) {
         return commentService.findCommentByDatetimeRangeAndArticleId(start, end, id);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/user_article/#{userId}_#{articleId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/article/{articleId}", method = RequestMethod.GET)
     public List<Comment> findCommentByUserIdAndArticleId(@PathVariable("userId") Integer userId,
                                                          @PathVariable("articleId") Integer articleId) {
         return commentService.findCommentByUserIdAndArticleId(userId, articleId);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/date/user_article", method = RequestMethod.GET)
-    public List<Comment> findCommentByDatetimeRangeAndUserIdAndArticleId(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date start,
-                                                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date end,
-                                                                         Integer userId,
-                                                                         Integer articleId) {
+    @RequestMapping(value = "/user/{userId}/article/{articleId}/date/{start}_{end}", method = RequestMethod.GET)
+    public List<Comment> findCommentByDatetimeRangeAndUserIdAndArticleId(
+            @PathVariable("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start,
+            @PathVariable("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end,
+            @PathVariable("userId") Integer userId,
+            @PathVariable("articleId") Integer articleId) {
         return commentService.findCommentByDatetimeRangeAndUserIdAndArticleId(start, end, userId, articleId);
     }
 
@@ -79,22 +80,26 @@ public class CommentController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/date", method = RequestMethod.GET)
-    public List<Comment> findCommentByDatetimeRange(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date start,
-                                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date end) {
+    @RequestMapping(value = "/date/{start}_{end}", method = RequestMethod.GET)
+    public List<Comment> findCommentByDatetimeRange(
+            @PathVariable("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start,
+            @PathVariable("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end) {
         return commentService.findCommentByDatetimeRange(start, end);
     }
 
+    @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)
     public void editComment(@RequestBody Comment comment) {
         commentService.editComment(comment);
     }
 
-    @RequestMapping(value = "/del", method = RequestMethod.DELETE)
-    public void deleteComment(@RequestBody Integer id) {
-        commentService.deleteComment(id);
+    @ResponseBody
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    public void deleteComment(@PathVariable("id") String id) {
+        commentService.deleteComment(Integer.valueOf(id));
     }
 
+    @ResponseBody
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public void saveComment(@RequestBody Comment comment) {
         commentService.saveComment(comment);
